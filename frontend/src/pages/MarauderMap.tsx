@@ -94,7 +94,6 @@ const MarauderMap: React.FC = () => {
     webinar: '📹'
   };
 
-  // Generate animated footsteps
   const footsteps = Array.from({ length: 8 }, (_, i) => ({
     id: i,
     startX: Math.random() * 100,
@@ -103,7 +102,6 @@ const MarauderMap: React.FC = () => {
     duration: 4 + Math.random() * 3
   }));
 
-  // FIX: The most simple and reliable state toggle.
   const revealMap = () => {
     setMapRevealed(prev => !prev);
   };
@@ -126,10 +124,8 @@ const MarauderMap: React.FC = () => {
     >
        <Navbar />
        <div className="min-h-screen p-8 relative">
-         {/* Dark overlay for better readability */}
          <div className="absolute inset-0 bg-black/40" />
          
-         {/* Animated footsteps */}
          {footsteps.map((footstep) => (
            <motion.div
              key={footstep.id}
@@ -151,7 +147,6 @@ const MarauderMap: React.FC = () => {
                ease: "easeInOut"
              }}
            >
-             {/* Additional shadow effect */}
              <div className="absolute inset-0 bg-black/40 rounded-full blur-sm" />
            </motion.div>
          ))}
@@ -163,7 +158,6 @@ const MarauderMap: React.FC = () => {
           >
             Back
           </button>
-          {/* Header */}
           <motion.div
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -188,11 +182,9 @@ const MarauderMap: React.FC = () => {
             </button>
           </motion.div>
 
-          {/* FIX: Removed AnimatePresence and motion props from this div for stability */}
-          {mapRevealed && (
+           {mapRevealed && (
             <div>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Map */}
                 <div className="lg:col-span-2">
                   <div
                     className="bg-gradient-to-br from-amber-100/10 to-yellow-100/10 rounded-xl p-8 border-2 border-amber-400/30 backdrop-blur-sm relative overflow-hidden"
@@ -207,7 +199,7 @@ const MarauderMap: React.FC = () => {
                   >
                      <div className="relative h-96 bg-gradient-to-br from-amber-50/5 to-yellow-50/5 rounded-lg border border-amber-400/20 overflow-hidden">
                        {events.map((event, index) => (
-                         <motion.div // motion can stay on internal elements
+                         <motion.div 
                           key={event.id}
                           initial={{ scale: 0.5, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
@@ -233,7 +225,6 @@ const MarauderMap: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Event Details */}
                 <div>
                   <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/90 rounded-xl p-6 border border-amber-400/20 backdrop-blur-sm sticky top-8">
                     <h2 className="text-xl font-['Cormorant_Garamond'] text-white mb-6 flex items-center space-x-2">
