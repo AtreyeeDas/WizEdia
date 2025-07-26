@@ -103,7 +103,6 @@ const TimeTurner: React.FC = () => {
         Back
       </button>
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -117,14 +116,12 @@ const TimeTurner: React.FC = () => {
             Master time itself and never miss an important moment
           </p>
 
-          {/* Time Turner Animation */}
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
             className="relative mx-auto w-32 h-32 mb-8"
           >
-            {/* Outer Ring */}
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -136,7 +133,6 @@ const TimeTurner: React.FC = () => {
               <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-2 w-4 h-2 bg-gold rounded-full" />
             </motion.div>
 
-            {/* Inner Clock */}
             <motion.div
               animate={{ rotate: -360 }}
               transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
@@ -145,7 +141,6 @@ const TimeTurner: React.FC = () => {
               <ClockIcon className="w-8 h-8 text-gold" />
             </motion.div>
 
-            {/* Time particles */}
             {[...Array(6)].map((_, i) => (
               <motion.div
                 key={i}
@@ -169,7 +164,6 @@ const TimeTurner: React.FC = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Calendar Section */}
           <div className="lg:col-span-2">
             <motion.div
               initial={{ x: -50, opacity: 0 }}
@@ -192,7 +186,6 @@ const TimeTurner: React.FC = () => {
                 </motion.button>
               </div>
 
-              {/* Simple Calendar Grid */}
               <div className="grid grid-cols-7 gap-2 mb-4">
                 {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
                   <div key={day} className="text-center p-2 text-parchment/70 font-medium">
@@ -231,7 +224,6 @@ const TimeTurner: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Add Event Form */}
             {showAddEvent && (
               <motion.div
                 initial={{ y: 50, opacity: 0 }}
@@ -303,7 +295,6 @@ const TimeTurner: React.FC = () => {
             )}
           </div>
 
-          {/* Upcoming Events */}
           <div>
             <motion.div
               initial={{ x: 50, opacity: 0 }}
