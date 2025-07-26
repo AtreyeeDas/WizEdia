@@ -25,12 +25,10 @@ const AskHermione: React.FC = () => {
   const navigate = useNavigate();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to bottom on new message
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
-  // RESTORED: This is the fully integrated function to call your backend API
   const handleSendMessage = async () => {
     if (!inputText.trim()) return;
 
@@ -110,7 +108,6 @@ const AskHermione: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Library Setting with new design */}
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -169,7 +166,6 @@ const AskHermione: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Chat Interface */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
