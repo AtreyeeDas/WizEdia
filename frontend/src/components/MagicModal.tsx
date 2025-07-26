@@ -28,7 +28,6 @@ const MagicModal: React.FC<MagicModalProps> = ({
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -37,7 +36,6 @@ const MagicModal: React.FC<MagicModalProps> = ({
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
           />
 
-          {/* Modal */}
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <motion.div
               initial={{ scale: 0.8, opacity: 0, y: 50 }}
@@ -49,7 +47,6 @@ const MagicModal: React.FC<MagicModalProps> = ({
                 rounded-xl border border-gold/20 backdrop-blur-md shadow-2xl magical-glow
               `}
             >
-              {/* Header */}
               {title && (
                 <div className="flex items-center justify-between p-6 border-b border-gold/20">
                   <h2 className="text-2xl font-['Cormorant_Garamond'] font-bold text-parchment">
@@ -66,15 +63,12 @@ const MagicModal: React.FC<MagicModalProps> = ({
                 </div>
               )}
 
-              {/* Content */}
               <div className="p-6">
                 {children}
               </div>
 
-              {/* Magical border effect */}
               <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-gold/0 via-gold/10 to-gold/0 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-              {/* Floating particles */}
+              
               {[...Array(6)].map((_, i) => (
                 <motion.div
                   key={i}
