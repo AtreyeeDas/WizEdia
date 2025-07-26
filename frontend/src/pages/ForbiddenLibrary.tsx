@@ -26,7 +26,6 @@ const ForbiddenLibrary: React.FC = () => {
       <Navbar />
 
       <div className="min-h-screen p-8 relative">
-        {/* Dark overlay for better readability */}
         <div className="absolute inset-0 bg-black/40" />
         
         <div className="relative z-10 max-w-4xl mx-auto">
@@ -37,7 +36,6 @@ const ForbiddenLibrary: React.FC = () => {
             Back
           </button>
 
-          {/* Header */}
           <motion.div
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -52,7 +50,6 @@ const ForbiddenLibrary: React.FC = () => {
             </p>
           </motion.div>
 
-          {/* Library Entrance Animation */}
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -131,14 +128,12 @@ const ForbiddenLibrary: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Card Section with Different Routes */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
           >
-            {/* Existing cards */}
             <motion.div className="bg-gradient-to-br from-slate-800/80 to-slate-900/90 rounded-xl p-6 border border-red-400/20 backdrop-blur-sm">
               <h3 className="text-xl font-['Cormorant_Garamond'] text-red-300 mb-2">Summarize Content</h3>
               <p className="text-white/80 mb-4">Generate concise summaries for long texts.</p>
@@ -184,7 +179,6 @@ const ForbiddenLibrary: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* ✅ New Research Assistant Card (centered below) */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
