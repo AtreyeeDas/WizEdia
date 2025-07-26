@@ -7,11 +7,11 @@ workers = (2 * multiprocessing.cpu_count()) + 1
 # The socket to bind
 bind = '0.0.0.0:' + os.environ.get('PORT', '5000')
 
-# Worker class
-worker_class = 'gthread'
+# Use eventlet worker class
+worker_class = 'eventlet'
 
 # Number of threads per worker
-threads = 4
+threads = 2
 
 # Timeout (in seconds)
 timeout = 120
@@ -27,3 +27,6 @@ loglevel = 'info'
 # Maximum requests per worker
 max_requests = 1000
 max_requests_jitter = 50
+
+# Worker connections
+worker_connections = 1000

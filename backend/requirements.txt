@@ -8,9 +8,10 @@ google-auth-oauthlib==1.1.0
 google-auth-httplib2==0.1.1
 google-api-python-client==2.103.0
 transformers==4.35.0
-torch
+torch>=2.0.0,<3.0.0
 torchvision
 tiktoken==0.5.1
 sentence-transformers==2.2.2
 gunicorn==21.2.0
-gevent==23.7.0
+eventlet==0.33.3
+numpy<2.0.0  # Required by sentence-transformers
