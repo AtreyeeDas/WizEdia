@@ -24,13 +24,11 @@ const Citation: React.FC = () => {
 
     setIsChecking(true);
 
-    // Prepare the request payload
     const payload = {
       text: inputText,
     };
 
     try {
-      // Send POST request to backend
       const response = await fetch('http://localhost:5000/api/library/plagiarism-checker', {
         method: 'POST',
         headers: {
@@ -41,15 +39,14 @@ const Citation: React.FC = () => {
 
       const data = await response.json();
 
-      // Check if the response contains necessary data
       if (data.plagiarism_text && data.plagiarism_method) {
         const result: CheckResult = {
           id: Date.now(),
           text: inputText.substring(0, 100) + (inputText.length > 100 ? '...' : ''),
-          plagiarismText: data.plagiarism_text, // Plagiarism text returned from API
+          plagiarismText: data.plagiarism_text,
           plagiarismMethod: data.plagiarism_method,
-          confidence: Math.floor(Math.random() * 30) + 70, // Static confidence for now
-          plagiarismLevel: 'High', // Static level for now
+          confidence: Math.floor(Math.random() * 30) + 70,
+          plagiarismLevel: 'High',
           timestamp: new Date(),
         };
 
@@ -80,7 +77,6 @@ const Citation: React.FC = () => {
         </button>
 
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
           <motion.div
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -95,7 +91,6 @@ const Citation: React.FC = () => {
             </p>
           </motion.div>
 
-          {/* Plagiarism Checker */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
