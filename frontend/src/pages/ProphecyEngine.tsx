@@ -105,7 +105,6 @@ const ProphecyEngine: React.FC = () => {
         Back
       </button>
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -121,7 +120,6 @@ const ProphecyEngine: React.FC = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Crystal Ball */}
           <div className="lg:col-span-1">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
@@ -134,7 +132,6 @@ const ProphecyEngine: React.FC = () => {
                   Crystal Ball of Foresight
                 </h2>
 
-                {/* Crystal Ball */}
                 <motion.div
                   animate={crystalBallActive ? {
                     scale: [1, 1.1, 1],
@@ -144,13 +141,10 @@ const ProphecyEngine: React.FC = () => {
                   className="relative mx-auto w-48 h-48 mb-6 cursor-pointer"
                   onClick={activateCrystalBall}
                 >
-                  {/* Ball Base */}
                   <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-8 bg-gradient-to-r from-amber-600 to-gold rounded-full opacity-80" />
                   
-                  {/* Crystal Ball */}
                   <div className="relative w-full h-full">
                     <div className="absolute inset-4 bg-gradient-to-br from-indigo-200/20 via-purple-300/30 to-indigo-400/40 rounded-full border-4 border-indigo-300/30 shadow-2xl backdrop-blur-sm overflow-hidden">
-                      {/* Swirling mist */}
                       <motion.div
                         animate={{ 
                           rotate: 360,
@@ -163,7 +157,6 @@ const ProphecyEngine: React.FC = () => {
                         className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-indigo-300/30 to-purple-500/20 rounded-full"
                       />
                       
-                      {/* Inner glow */}
                       <motion.div
                         animate={{
                           opacity: [0.3, 0.8, 0.3],
@@ -173,7 +166,6 @@ const ProphecyEngine: React.FC = () => {
                         className="absolute inset-6 bg-gradient-to-br from-indigo-400/40 to-purple-600/40 rounded-full blur-sm"
                       />
 
-                      {/* Prophecy Preview */}
                       {selectedProphecy && crystalBallActive && (
                         <motion.div
                           initial={{ opacity: 0, scale: 0.5 }}
@@ -192,7 +184,6 @@ const ProphecyEngine: React.FC = () => {
                       )}
                     </div>
 
-                    {/* Magical particles */}
                     {crystalBallActive && (
                       <>
                         {[...Array(12)].map((_, i) => (
@@ -242,8 +233,6 @@ const ProphecyEngine: React.FC = () => {
               </div>
             </motion.div>
           </div>
-
-          {/* Prophecies List */}
           <div className="lg:col-span-2">
             <motion.div
               initial={{ x: 50, opacity: 0 }}
@@ -269,7 +258,6 @@ const ProphecyEngine: React.FC = () => {
                       className={`group cursor-pointer bg-gradient-to-br from-slate-800/40 to-slate-900/60 rounded-xl p-6 border ${urgencyBorders[prophecy.urgency]} backdrop-blur-sm hover:border-indigo-400/40 transition-all duration-300`}
                     >
                       <div className="flex items-start space-x-4">
-                        {/* Icon & Urgency */}
                         <div className="flex flex-col items-center">
                           <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${urgencyColors[prophecy.urgency]} flex items-center justify-center text-xl mb-2 shadow-lg`}>
                             {typeIcons[prophecy.type]}
@@ -279,7 +267,6 @@ const ProphecyEngine: React.FC = () => {
                           </span>
                         </div>
 
-                        {/* Content */}
                         <div className="flex-1">
                           <div className="flex items-center justify-between mb-3">
                             <h3 className="text-xl font-['Cormorant_Garamond'] text-parchment group-hover:text-indigo-300 transition-colors">
@@ -314,13 +301,11 @@ const ProphecyEngine: React.FC = () => {
                         </div>
                       </div>
 
-                      {/* Hover effect */}
                       <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-400/0 via-indigo-400/5 to-indigo-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </motion.div>
                   ))}
               </div>
 
-              {/* Constellation Background */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -335,7 +320,6 @@ const ProphecyEngine: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Stars */}
                 {[...Array(20)].map((_, i) => (
                   <motion.div
                     key={i}
