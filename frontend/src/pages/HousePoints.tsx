@@ -132,7 +132,6 @@ const HousePoints: React.FC = () => {
         Back
       </button>
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -146,7 +145,6 @@ const HousePoints: React.FC = () => {
             The Great Hall displays the eternal competition for the House Cup
           </p>
 
-          {/* Floating House Cup */}
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -167,7 +165,6 @@ const HousePoints: React.FC = () => {
               🏆
             </motion.div>
             
-            {/* Magical aura */}
             <motion.div
               animate={{ 
                 opacity: [0.3, 0.8, 0.3],
@@ -180,7 +177,6 @@ const HousePoints: React.FC = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* House Leaderboard */}
           <div className="lg:col-span-2">
             <motion.div
               initial={{ x: -50, opacity: 0 }}
@@ -203,12 +199,10 @@ const HousePoints: React.FC = () => {
                     onClick={() => setSelectedHouse(house.name.toLowerCase())}
                     className={`group cursor-pointer relative bg-gradient-to-r ${house.gradient} p-6 rounded-xl shadow-xl border-2 border-white/20 hover:border-white/40 transition-all duration-300`}
                   >
-                    {/* Ranking Badge */}
                     <div className="absolute -top-3 -left-3 w-10 h-10 bg-gradient-to-br from-gold to-amber-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
                       {index + 1}
                     </div>
 
-                    {/* Crown for first place */}
                     {index === 0 && (
                       <motion.div
                         animate={{ rotate: [0, 5, -5, 0] }}
@@ -220,7 +214,6 @@ const HousePoints: React.FC = () => {
                     )}
 
                     <div className="flex items-center space-x-6">
-                      {/* House Image */}
                       <motion.div
                         whileHover={{ scale: 1.2, rotate: 15 }}
                         className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/50 shadow-lg"
@@ -232,7 +225,6 @@ const HousePoints: React.FC = () => {
                         />
                       </motion.div>
 
-                      {/* House Info */}
                       <div className="flex-1">
                         <h3 className="text-2xl font-['Cormorant_Garamond'] font-bold text-white mb-2">
                           {house.name}
@@ -245,7 +237,6 @@ const HousePoints: React.FC = () => {
                         </div>
                       </div>
 
-                      {/* Points Display */}
                       <div className="text-right">
                         <motion.div
                           initial={{ scale: 0 }}
@@ -257,7 +248,6 @@ const HousePoints: React.FC = () => {
                         </motion.div>
                         <div className="text-white/80 text-sm">points</div>
                         
-                        {/* Progress Bar */}
                         <div className="w-32 bg-white/20 rounded-full h-2 mt-3 overflow-hidden">
                           <motion.div
                             initial={{ width: 0 }}
@@ -269,7 +259,6 @@ const HousePoints: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Magical sparkles */}
                     {index === 0 && (
                       <>
                         {[...Array(6)].map((_, i) => (
@@ -300,7 +289,6 @@ const HousePoints: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Recent Achievements */}
             <motion.div
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -349,7 +337,6 @@ const HousePoints: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Personal Stats */}
           <div>
             <motion.div
               initial={{ x: 50, opacity: 0 }}
@@ -362,7 +349,6 @@ const HousePoints: React.FC = () => {
                 <span>Your Progress</span>
               </h2>
 
-              {/* Personal House */}
               <div className="text-center mb-8">
                 <div className="w-16 h-16 mx-auto mb-3 rounded-full overflow-hidden border-2 border-red-400/50 shadow-lg">
                   <img 
@@ -379,7 +365,6 @@ const HousePoints: React.FC = () => {
                 </p>
               </div>
 
-              {/* Personal Stats */}
               <div className="space-y-4 mb-8">
                 <div className="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg">
                   <div className="flex items-center space-x-2">
@@ -406,7 +391,6 @@ const HousePoints: React.FC = () => {
                 </div>
               </div>
 
-              {/* Level Progress */}
               <div className="mb-6">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-parchment/70">Level 7 Wizard</span>
@@ -422,7 +406,6 @@ const HousePoints: React.FC = () => {
                 </div>
               </div>
 
-              {/* Next Achievements */}
               <div>
                 <h3 className="text-parchment/70 font-medium mb-3">Next Achievements:</h3>
                 <div className="space-y-2">
