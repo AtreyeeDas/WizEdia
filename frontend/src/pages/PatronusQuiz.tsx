@@ -84,7 +84,6 @@ const PatronusQuiz: React.FC<PatronusQuizProps> = ({ onComplete }) => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      // Calculate result
       const houseCount: { [key: string]: number } = {};
       const patronusOptions: string[] = [];
 
@@ -96,12 +95,10 @@ const PatronusQuiz: React.FC<PatronusQuizProps> = ({ onComplete }) => {
         patronusOptions.push(option.patronus);
       });
 
-      // Determine house
       const house = Object.keys(houseCount).reduce((a, b) => 
         houseCount[a] > houseCount[b] ? a : b
       );
 
-      // Pick a random patronus from the user's selections
       const patronus = patronusOptions[Math.floor(Math.random() * patronusOptions.length)];
 
       setResult({ house, patronus });
@@ -149,7 +146,6 @@ const PatronusQuiz: React.FC<PatronusQuizProps> = ({ onComplete }) => {
     >
       <Navbar />
       <div className="min-h-screen p-8 relative flex items-center justify-center">
-        {/* Dark overlay for better readability */}
         <div className="absolute inset-0 bg-black/40" />
         
         <div className="relative z-10 max-w-2xl mx-auto">
@@ -168,7 +164,6 @@ const PatronusQuiz: React.FC<PatronusQuizProps> = ({ onComplete }) => {
                 exit={{ opacity: 0, y: -50 }}
                 className="text-center"
               >
-                {/* Header */}
                 <div className="mb-8">
                   <h1 className="text-4xl font-['Cormorant_Garamond'] font-bold text-transparent bg-clip-text bg-gradient-to-r from-silver via-gold to-silver mb-4">
                     The Patronus Quiz
@@ -177,7 +172,6 @@ const PatronusQuiz: React.FC<PatronusQuizProps> = ({ onComplete }) => {
                     Discover your Hogwarts House and Patronus
                   </p>
                   
-                  {/* Progress Bar */}
                   <div className="w-full bg-slate-700 rounded-full h-2 mb-8">
                     <motion.div
                       className="bg-gradient-to-r from-gold to-amber-400 h-2 rounded-full"
@@ -188,7 +182,6 @@ const PatronusQuiz: React.FC<PatronusQuizProps> = ({ onComplete }) => {
                   </div>
                 </div>
 
-                {/* Question */}
                 <motion.div
                   key={currentQuestion}
                   initial={{ x: 100, opacity: 0 }}
@@ -234,7 +227,6 @@ const PatronusQuiz: React.FC<PatronusQuizProps> = ({ onComplete }) => {
                 transition={{ duration: 0.8, type: "spring" }}
                 className="text-center"
               >
-                {/* Result Display */}
                 <div className="bg-gradient-to-br from-blue-900/80 to-indigo-900/90 rounded-xl p-8 border border-blue-400/30 backdrop-blur-sm"
                      style={{
                        boxShadow: '0 0 30px rgba(59, 130, 246, 0.3), 0 0 60px rgba(59, 130, 246, 0.2), 0 0 90px rgba(59, 130, 246, 0.1)',
