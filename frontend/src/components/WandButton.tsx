@@ -50,7 +50,6 @@ const WandButton: React.FC<WandButtonProps> = ({
         <span>{children}</span>
       </span>
       
-      {/* Magical sparkle effect */}
       <div className="absolute inset-0 rounded-lg overflow-hidden">
         <motion.div
           animate={{
