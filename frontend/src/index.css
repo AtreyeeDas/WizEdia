@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom CSS for magical effects */
 @keyframes glitter {
   0%, 100% { 
     opacity: 0; 
@@ -26,12 +25,10 @@
   animation: glitter 2s infinite;
 }
 
-/* Magical glow effect */
 .magical-glow {
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.2), 0 0 60px rgba(255, 215, 0, 0.1);
 }
 
-/* Candlelight flicker animation */
 @keyframes candlelight-flicker {
   0%, 100% { opacity: 0.6; }
   50% { opacity: 1; }
@@ -41,7 +38,6 @@
   animation: candlelight-flicker 2s infinite;
 }
 
-/* Floating animation for candles */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }
@@ -51,7 +47,6 @@
   animation: float 3s ease-in-out infinite;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
