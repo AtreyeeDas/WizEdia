@@ -29,14 +29,11 @@ const Landing: React.FC<LandingProps> = ({ onGetStarted }) => {
         backgroundRepeat: 'no-repeat'
       }}
     >
-      {/* Dark overlay for better text readability */}
       <div className="absolute inset-0 bg-black/40" />
       
-      {/* Animated background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900/60 via-purple-900/40 to-slate-800/60" />
         
-        {/* Floating magical particles */}
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
@@ -60,7 +57,6 @@ const Landing: React.FC<LandingProps> = ({ onGetStarted }) => {
       </div>
 
       <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-        {/* Hogwarts Castle Silhouette replaced with 3 large candles */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -77,7 +73,6 @@ const Landing: React.FC<LandingProps> = ({ onGetStarted }) => {
                 transition={{ delay: 0.2 * i, duration: 1 }}
                 style={{ width: i === 1 ? '90px' : '60px', height: '180px' }}
               >
-                {/* Candle flame */}
                 <motion.div
                   className="w-10 h-16 bg-gradient-to-b from-orange-400 to-orange-600 rounded-full mb-[-12px] relative z-10"
                   animate={{
@@ -92,14 +87,12 @@ const Landing: React.FC<LandingProps> = ({ onGetStarted }) => {
                 >
                   <div className="absolute inset-0 bg-orange-300 rounded-full opacity-60" />
                 </motion.div>
-                {/* Candle body */}
                 <div className="w-full h-full bg-white rounded-b-3xl shadow-lg border border-slate-200" />
               </motion.div>
             ))}
           </div>
         </motion.div>
 
-        {/* Title */}
         <motion.h1
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -132,7 +125,6 @@ const Landing: React.FC<LandingProps> = ({ onGetStarted }) => {
           Discover your Patronus, join your House, and embark on an enchanted journey of knowledge.
         </motion.p>
 
-        {/* Enter Button */}
         <motion.button
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -151,13 +143,11 @@ const Landing: React.FC<LandingProps> = ({ onGetStarted }) => {
             <ArrowRightIcon className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
           </span>
           
-          {/* Magical sparkle effect */}
           <div className="absolute inset-0 rounded-lg overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
           </div>
         </motion.button>
 
-        {/* Floating instruction */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -168,7 +158,6 @@ const Landing: React.FC<LandingProps> = ({ onGetStarted }) => {
         </motion.p>
       </div>
 
-      {/* Magical transition overlay */}
       {isAnimating && (
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
