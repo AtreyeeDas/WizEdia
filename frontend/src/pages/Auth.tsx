@@ -21,7 +21,6 @@ const Auth: React.FC<AuthProps> = ({ onAuth }) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate authentication
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     if (isSignUp && formData.password !== formData.confirmPassword) {
@@ -30,7 +29,6 @@ const Auth: React.FC<AuthProps> = ({ onAuth }) => {
       return;
     }
 
-    // Simulate successful authentication
     onAuth({
       email: formData.email,
       name: formData.name || formData.email.split('@')[0]
@@ -56,11 +54,9 @@ const Auth: React.FC<AuthProps> = ({ onAuth }) => {
         backgroundRepeat: 'no-repeat'
       }}
     >
-      {/* Dark overlay for better readability */}
       <div className="absolute inset-0 bg-black/50" />
       
-      {/* Magical background effects */}
-      <div className="fixed inset-0 opacity-20">
+        <div className="fixed inset-0 opacity-20">
         <div className="absolute top-10 left-10 w-2 h-2 bg-gold rounded-full animate-pulse"></div>
         <div className="absolute top-32 right-20 w-1 h-1 bg-silver rounded-full animate-ping"></div>
         <div className="absolute bottom-20 left-1/4 w-1.5 h-1.5 bg-gold rounded-full animate-pulse delay-1000"></div>
@@ -68,7 +64,6 @@ const Auth: React.FC<AuthProps> = ({ onAuth }) => {
       </div>
 
       <div className="relative z-10 w-full max-w-md mx-auto px-6">
-        {/* Header */}
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -90,7 +85,6 @@ const Auth: React.FC<AuthProps> = ({ onAuth }) => {
           </p>
         </motion.div>
 
-        {/* Auth Form */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -206,7 +200,7 @@ const Auth: React.FC<AuthProps> = ({ onAuth }) => {
             </motion.button>
           </form>
 
-          {/* Toggle between Sign In/Sign Up */}
+          
           <div className="mt-6 text-center">
             <p className="text-white/60 mb-3">
               {isSignUp ? 'Already have an account?' : "Don't have an account?"}
@@ -225,7 +219,7 @@ const Auth: React.FC<AuthProps> = ({ onAuth }) => {
           </div>
         </motion.div>
 
-        {/* Footer */}
+        
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -236,7 +230,7 @@ const Auth: React.FC<AuthProps> = ({ onAuth }) => {
         </motion.p>
       </div>
 
-      {/* Magical transition particles */}
+      
       {isLoading && (
         <div className="fixed inset-0 pointer-events-none">
           {[...Array(20)].map((_, i) => (
