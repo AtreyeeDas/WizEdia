@@ -23,7 +23,6 @@ def summarize_content():
         if not data:
             return jsonify({'error': 'Content data is required'}), 400
         
-        # Get content from various sources
         content_text = ""
         content_source = ""
         
@@ -46,17 +45,13 @@ def summarize_content():
         if not content_text:
             return jsonify({'error': 'No valid content found to analyze'}), 400
         
-        # Limit content length for processing
         if len(content_text) > 10000:
             content_text = content_text[:10000] + "..."
         
-        # Generate summary
         summary_result = generate_content_summary(content_text)
         
-        # Perform ethics analysis
         ethics_result = analyze_content_ethics(content_text)
         
-        # Extract key themes and concepts
         themes = extract_content_themes(content_text)
         
         response_data = {
@@ -92,13 +87,10 @@ def fact_check_content():
         if not text:
             return jsonify({'error': 'Valid text content is required'}), 400
         
-        # Extract claims from the text
         claims = extract_claims(text)
         
-        # Analyze credibility indicators
         credibility_analysis = analyze_credibility_indicators(text)
         
-        # Check for bias indicators
         bias_analysis = analyze_bias_indicators(text)
                
         response_data = {
@@ -129,7 +121,6 @@ def compare_sources():
         
         sources = data['sources']
         
-        # Analyze each source
         source_analyses = []
         for i, source in enumerate(sources):
             source_text = clean_text(source.get('text', ''))
@@ -168,22 +159,18 @@ def research_assistant():
             return jsonify({'error': 'Research topic is required'}), 400
         
         topic = clean_text(data['topic'])
-        research_level = data.get('level', 'undergraduate')  # undergraduate, graduate, professional
-        research_type = data.get('type', 'general')  # general, literature_review, empirical, theoretical
+        research_level = data.get('level', 'undergraduate')
+        research_type = data.get('type', 'general')
         
         if not topic:
             return jsonify({'error': 'Valid research topic is required'}), 400
         
-        # Suggest research sources
         research_sources = suggest_research_sources(topic, research_level)
         
-        # Provide methodology guidance
         methodology_guidance = provide_methodology_guidance(topic, research_type)
         
-        # Generate research questions
         research_questions = generate_research_questions(topic, research_level)
         
-        # Create research timeline
         research_timeline = create_research_timeline(research_level, research_type)
         
         response_data = {
@@ -209,14 +196,12 @@ def research_assistant():
 @library_bp.route('/plagiarism-checker', methods=['POST'])
 @optional_auth
 def citation_helper():
-    #Help check plagiarism
     try:
         data = request.get_json()
         
         if not data or 'text' not in data:
             return jsonify({'error': 'Content data is required'}), 400
         
-        # Get content from various sources
         content_text = clean_text(data['text'])
         if not content_text:
             return jsonify({'error': 'Valid content text is required'}), 400
@@ -251,21 +236,17 @@ def citation_helper():
 def extract_content_from_url(url: str) -> dict:
     """Extract text content from URL"""
     try:
-        # Basic URL validation
         if not url.startswith(('http://', 'https://')):
             return {'success': False, 'error': 'Invalid URL format'}
-        
-        # Simple content extraction (in real implementation, use libraries like BeautifulSoup)
+
         response = requests.get(url, timeout=10, headers={
             'User-Agent': 'Mozilla/5.0 (WizEdia Content Analyzer)'
         })
         
         if response.status_code == 200:
-            # Very basic text extraction (remove HTML tags)
             content = re.sub(r'<[^>]+>', '', response.text)
             content = re.sub(r'\s+', ' ', content).strip()
-            
-            # Limit content length
+
             if len(content) > 8000:
                 content = content[:8000]
             
@@ -290,7 +271,6 @@ def extract_content_from_url(url: str) -> dict:
 def generate_content_summary(text: str) -> dict:
     """Generate comprehensive summary of content"""
     try:
-        # Use LLM for summarization
         summary_prompt = f"""Summarize the following text in a clear, concise manner:
 
 Text: {text[:3000]}...
@@ -315,7 +295,6 @@ Focus on the most important information and insights."""
                 'summary_method': 'llm_generated'
             }
         else:
-            # Fallback to extractive summary
             return generate_extractive_summary(text)
             
     except Exception as e:
@@ -329,19 +308,16 @@ def generate_extractive_summary(text: str) -> dict:
     """Generate extractive summary as fallback"""
     sentences = text.split('.')
     
-    # Simple extractive approach: take first few sentences and some from middle/end
     important_sentences = []
     
     if len(sentences) > 3:
-        important_sentences.extend(sentences[:2])  # First 2 sentences
+        important_sentences.extend(sentences[:2]) 
         
         if len(sentences) > 10:
-            # Add some middle sentences
             middle_idx = len(sentences) // 2
             important_sentences.append(sentences[middle_idx])
         
         if len(sentences) > 5:
-            # Add conclusion sentence
             important_sentences.append(sentences[-2])
     else:
         important_sentences = sentences
@@ -357,13 +333,13 @@ def generate_extractive_summary(text: str) -> dict:
 
 def analyze_content_ethics(text: str) -> dict:
     """Analyze content for ethical considerations"""
-    ethics_score = 0.7  # Base neutral score
+    ethics_score = 0.7  
     concerns = []
     positive_indicators = []
     
     text_lower = text.lower()
     
-    # Check for concerning content
+
     concerning_keywords = [
         'discriminat', 'bias', 'stereotype', 'prejudice', 'misleading',
         'false', 'unverified', 'conspiracy', 'hate', 'harmful'
@@ -374,7 +350,6 @@ def analyze_content_ethics(text: str) -> dict:
             ethics_score -= 0.1
             concerns.append(f'Contains potentially {keyword} content')
     
-    # Check for positive indicators
     positive_keywords = [
         'evidence', 'research', 'study', 'peer-reviewed', 'citation',
         'source', 'methodology', 'objective', 'balanced', 'factual'
@@ -385,13 +360,12 @@ def analyze_content_ethics(text: str) -> dict:
             ethics_score += 0.05
             positive_indicators.append(f'Contains {keyword} indicators')
     
-    # Ensure score stays within bounds
     ethics_score = max(0.0, min(1.0, ethics_score))
     
     return {
         'ethics_score': round(ethics_score, 2),
         'level': get_ethics_level(ethics_score),
-        'concerns': concerns[:5],  # Limit to 5 concerns
+        'concerns': concerns[:5],  
         'positive_indicators': positive_indicators[:5],
         'recommendations': get_ethics_recommendations(ethics_score, concerns)
     }
@@ -428,13 +402,10 @@ def get_ethics_recommendations(score: float, concerns: list) -> list:
 
 def extract_content_themes(text: str) -> dict:
     """Extract main themes and topics from content"""
-    # Extract keywords
     keywords = extract_keywords(text, max_keywords=10)
     
-    # Categorize content
     categories = categorize_content(text)
     
-    # Identify academic disciplines
     disciplines = identify_academic_disciplines(text)
     
     return {
@@ -492,17 +463,14 @@ def identify_academic_disciplines(text: str) -> list:
 
 def assess_content_complexity(text: str) -> str:
     """Assess the complexity level of content"""
-    # Simple complexity assessment based on various factors
     sentences = text.split('.')
     words = text.split()
     
     avg_sentence_length = len(words) / len(sentences) if sentences else 0
     
-    # Count complex words (more than 6 characters)
     complex_words = [word for word in words if len(word) > 6]
     complexity_ratio = len(complex_words) / len(words) if words else 0
     
-    # Technical terminology indicators
     technical_indicators = [
         'methodology', 'analysis', 'hypothesis', 'theoretical', 'empirical',
         'quantitative', 'qualitative', 'systematic', 'comprehensive'
@@ -510,7 +478,6 @@ def assess_content_complexity(text: str) -> str:
     
     technical_count = sum(1 for term in technical_indicators if term in text.lower())
     
-    # Determine complexity level
     complexity_score = (avg_sentence_length / 20) + complexity_ratio + (technical_count / 10)
     
     if complexity_score > 1.5:
@@ -522,7 +489,6 @@ def assess_content_complexity(text: str) -> str:
 
 def extract_key_insights(text: str) -> list:
     """Extract key insights from content"""
-    # Simple insight extraction based on sentence patterns
     sentences = text.split('.')
     insights = []
     
@@ -537,11 +503,10 @@ def extract_key_insights(text: str) -> list:
             if len(sentence) > 20 and len(sentence) < 200:  # Good length for insights
                 insights.append(sentence)
     
-    return insights[:5]  # Limit to 5 insights
+    return insights[:5]  
 
 def extract_claims(text: str) -> list:
     """Extract factual claims from text"""
-    # Simple claim extraction based on sentence patterns
     sentences = text.split('.')
     claims = []
     
@@ -556,15 +521,14 @@ def extract_claims(text: str) -> list:
         if any(indicator in sentence.lower() for indicator in claim_indicators):
             claims.append(sentence)
     
-    # Also look for definitive statements
     definitive_patterns = ['is', 'are', 'will', 'must', 'always', 'never']
     for sentence in sentences:
         sentence = sentence.strip()
         if any(pattern in sentence.lower() for pattern in definitive_patterns):
-            if len(sentence) > 30:  # Avoid very short sentences
+            if len(sentence) > 30:
                 claims.append(sentence)
     
-    return claims[:8]  # Limit to 8 claims
+    return claims[:8]
 
 def analyze_credibility_indicators(text: str) -> dict:
     """Analyze indicators of content credibility"""
@@ -574,7 +538,6 @@ def analyze_credibility_indicators(text: str) -> dict:
     
     text_lower = text.lower()
     
-    # Positive credibility indicators
     positive_keywords = [
         'peer-reviewed', 'citation', 'reference', 'bibliography',
         'methodology', 'data', 'evidence', 'research', 'study',
@@ -586,7 +549,6 @@ def analyze_credibility_indicators(text: str) -> dict:
             credibility_score += 0.05
             positive_indicators.append(keyword)
     
-    # Negative credibility indicators
     negative_keywords = [
         'unverified', 'rumor', 'alleged', 'conspiracy',
         'secret', 'hidden truth', 'they don\'t want you to know',
@@ -598,7 +560,6 @@ def analyze_credibility_indicators(text: str) -> dict:
             credibility_score -= 0.1
             negative_indicators.append(keyword)
     
-    # Ensure score stays within bounds
     credibility_score = max(0.0, min(1.0, credibility_score))
     
     return {
@@ -631,7 +592,6 @@ def assess_source_quality(text: str) -> dict:
 
 def assess_balance(text: str) -> bool:
     """Assess if content presents balanced perspective"""
-    # Simple balance assessment
     balance_indicators = [
         'however', 'although', 'while', 'nevertheless',
         'on the other hand', 'alternatively', 'conversely'
@@ -641,12 +601,11 @@ def assess_balance(text: str) -> bool:
 
 def analyze_bias_indicators(text: str) -> dict:
     """Analyze potential bias in content"""
-    bias_score = 0.5  # Neutral starting point
+    bias_score = 0.5 
     bias_indicators = []
     
     text_lower = text.lower()
     
-    # Emotional language indicators
     emotional_words = [
         'amazing', 'shocking', 'unbelievable', 'incredible',
         'devastating', 'terrible', 'wonderful', 'perfect'
@@ -657,7 +616,6 @@ def analyze_bias_indicators(text: str) -> dict:
         bias_score += 0.2
         bias_indicators.append('High emotional language')
     
-    # Absolute statements
     absolute_words = ['always', 'never', 'all', 'none', 'every', 'completely']
     absolute_count = sum(1 for word in absolute_words if word in text_lower)
     if absolute_count > 2:
@@ -734,10 +692,8 @@ def calculate_reliability_score(credibility: dict, bias: dict) -> dict:
     credibility_score = credibility['credibility_score']
     bias_score = bias['bias_score']
     
-    # Lower bias score is better, so invert it
     adjusted_bias = 1.0 - bias_score
     
-    # Weighted average (credibility weighted more heavily)
     reliability = (credibility_score * 0.7) + (adjusted_bias * 0.3)
     
     return {
@@ -757,7 +713,6 @@ def get_reliability_level(score: float) -> str:
     else:
         return 'unreliable'
 
-# Additional helper functions for source comparison and research assistance
 """
 def perform_comparative_analysis(source_analyses: list) -> dict:
     #Perform comparative analysis across sources
@@ -813,7 +768,6 @@ def suggest_research_sources(topic: str, research_level: str) -> str:
     )
     context = f"Topic: {topic}\nResearch Level: {research_level}"
     
-    # Use the global gemini_chat instance
     response = gemini_chat.chat(prompt, context=context, personality='professor')
     
     if response and response.get('success'):
