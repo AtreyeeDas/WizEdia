@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+* {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4.5l-4 4L7 10l4 4 4-1.5L17 15l-1.5 2.5L13 16l-4 4-4-1.5L3 17l1.5-2.5L7 16l4-4 1.5-4L15 4.5z"/></svg>') 12 12, auto !important;
+}
+
+.magical-glow {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.enchanted-scroll {
+  background: linear-gradient(45deg, rgba(139, 69, 19, 0.1), rgba(160, 82, 45, 0.1));
+  border: 2px solid rgba(160, 82, 45, 0.3);
+}
+
+.spell-cast {
+  animation: spellCast 0.6s ease-out;
+}
+
+@keyframes spellCast {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.floating-portrait {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.parchment-texture {
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(160, 82, 45, 0.1) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+.candlelight-flicker {
+  animation: flicker 2s ease-in-out infinite alternate;
+}
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+.magical-border {
+  border-image: linear-gradient(45deg, #FFD700, #C0C0C0, #800080) 1;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(30, 41, 59, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #FFD700, #B8860B);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #FFA500, #DAA520);
+}
