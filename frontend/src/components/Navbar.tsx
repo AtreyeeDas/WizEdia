@@ -59,7 +59,6 @@ const Navbar=()=> {
       className="fixed left-0 top-0 h-full w-16 bg-gradient-to-b from-slate-900/90 to-slate-800/90 backdrop-blur-md border-r border-gold/20 z-40"
     >
       <div className="flex flex-col items-center py-4 space-y-2">
-        {/* Return to Landing Button */}
         {(
           <motion.div
             onHoverStart={() => setHoveredItem('Home')}
@@ -71,7 +70,6 @@ const Navbar=()=> {
           >
             <HomeIcon className="w-4 h-4 text-white" />
             
-            {/* Tooltip */}
             {hoveredItem === 'Home' && (
               <motion.div
                 initial={{ opacity: 0, x: -10 }}
@@ -85,7 +83,6 @@ const Navbar=()=> {
           </motion.div>
         )}
 
-        {/* Navigation Items */}
         <div className="flex flex-col space-y-2 mt-4">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
@@ -109,7 +106,6 @@ const Navbar=()=> {
                 >
                   <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-parchment'}`} />
                   
-                  {/* Tooltip */}
                   {hoveredItem === item.label && (
                     <motion.div
                       initial={{ opacity: 0, x: -10 }}
@@ -127,7 +123,6 @@ const Navbar=()=> {
         </div>
       </div>
 
-      {/* Floating magical orbs */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
         <motion.div
           animate={{ y: [0, -10, 0] }}
