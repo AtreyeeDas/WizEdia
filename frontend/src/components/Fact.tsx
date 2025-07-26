@@ -22,14 +22,12 @@ const Fact: React.FC = () => {
     if (!inputText.trim()) return;
 
     setIsChecking(true);
-
-    // Prepare the request payload
+d
     const payload = {
       text: inputText,
     };
 
     try {
-      // Send POST request to backend
       const response = await fetch('http://localhost:5000/api/library/fact-check', {
         method: 'POST',
         headers: {
@@ -41,13 +39,13 @@ const Fact: React.FC = () => {
       const data = await response.json();
 
       if (data.success) {
-        const reliabilityScore = data.overall_reliability_score?.score ?? 0; // Fallback to 0 if score is undefined
-        const reliabilityLevel = data.overall_reliability_score?.level ?? 'unknown'; // Fallback to 'unknown'
+        const reliabilityScore = data.overall_reliability_score?.score ?? 0; 
+        const reliabilityLevel = data.overall_reliability_score?.level ?? 'unknown'; 
 
         const result: CheckResult = {
           id: Date.now(),
           text: inputText.substring(0, 100) + (inputText.length > 100 ? '...' : ''),
-          confidence: reliabilityScore * 100, // Convert score to percentage
+          confidence: reliabilityScore * 100, 
           reliabilityLevel,
           extractedClaims: data.extracted_claims || [],
           timestamp: new Date(),
@@ -80,7 +78,6 @@ const Fact: React.FC = () => {
         </button>
 
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
           <motion.div
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -95,7 +92,6 @@ const Fact: React.FC = () => {
             </p>
           </motion.div>
 
-          {/* Fact Checker */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
