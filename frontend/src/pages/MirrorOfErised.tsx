@@ -4,8 +4,6 @@ import { HeartIcon, StarIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
-// --- Interfaces for State and API Responses ---
-
 interface QuoteState {
   quote: string;
   author: string;
@@ -30,15 +28,12 @@ const MirrorOfErised: React.FC = () => {
   const [quoteError, setQuoteError] = useState<string | null>(null);
   const [quoteMode, setQuoteMode] = useState<QuoteMode>('daily');
   
-  // State for themed quotes
   const [availableThemes, setAvailableThemes] = useState<string[]>([]);
   const [selectedTheme, setSelectedTheme] = useState('courage');
 
-  // State for personalized quotes
   const [selectedMood, setSelectedMood] = useState('anxious');
   const [selectedHouse, setSelectedHouse] = useState('ravenclaw');
   
-  // State for custom quotes (Heart's Desires)
   const [customQuotes, setCustomQuotes] = useState<CustomQuote[]>([]);
   const [newGoal, setNewGoal] = useState('');
   const [showAddGoal, setShowAddGoal] = useState(false);
@@ -46,7 +41,6 @@ const MirrorOfErised: React.FC = () => {
 
   const navigate = useNavigate();
 
-  // --- API Fetching Functions ---
 
   const fetchQuote = async (url: string) => {
     setIsLoadingQuote(true);
@@ -91,15 +85,12 @@ const MirrorOfErised: React.FC = () => {
     const params = new URLSearchParams({ mood: selectedMood, context: 'personal growth', house: selectedHouse });
     const data = await fetchQuote(`http://localhost:5000/api/erised/quote?${params}`);
     if (data) {
-        // The personalized quote is often a long string with explanation, so we just use that.
         setQuoteState({ quote: data.quote, author: `Wisdom for a ${data.house}` });
     }
   };
   
-  // Fetch initial data on load
   useEffect(() => {
     fetchDailyQuote();
-    // Fetch available themes for the dropdown
     const getThemes = async () => {
         const data = await fetchQuote('http://localhost:5000/api/erised/themed?theme=courage');
         if (data?.available_themes) setAvailableThemes(data.available_themes);
@@ -107,7 +98,6 @@ const MirrorOfErised: React.FC = () => {
     getThemes();
   }, []);
 
-  // Handler for custom quote generation
   const handleGenerateCustomQuote = async () => {
     if (!newGoal.trim()) return;
     setIsGenerating(true);
@@ -150,18 +140,15 @@ const MirrorOfErised: React.FC = () => {
     >
       <Navbar />
       <div className="min-h-screen p-8 relative">
-        {/* Dark overlay for better readability */}
         <div className="absolute inset-0 bg-black/40" />
         
         <div className="relative z-10 max-w-4xl mx-auto">
           <button onClick={() => navigate(-1)} className="absolute top-6 right-6 bg-rose-600/60 hover:bg-rose-500 text-parchment px-4 py-2 rounded-md border border-slate-500/50 shadow-md transition">Back</button>
-          {/* Header */}
           <motion.div initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }} className="text-center mb-12">
             <h1 className="text-4xl font-['Cormorant_Garamond'] font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 mb-4">Mirror of Erised</h1>
             <p className="text-white/80 text-lg mb-8">"I show not your face but your heart's desire"</p>
           </motion.div>
 
-          {/* Mirror */}
           <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1, delay: 0.3 }} className="relative mx-auto mb-12">
             <div className="relative max-w-2xl mx-auto">
               <div className="relative bg-gradient-to-br from-amber-600 via-yellow-600 to-amber-700 p-8 rounded-t-full rounded-b-lg shadow-2xl">
@@ -194,7 +181,6 @@ const MirrorOfErised: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* --- Quote Controls --- */}
           <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.4 }} className="bg-gradient-to-br from-slate-800/80 to-slate-900/90 rounded-xl p-6 border border-purple-400/20 backdrop-blur-sm mb-12">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {/* Mode Selection */}
@@ -203,7 +189,6 @@ const MirrorOfErised: React.FC = () => {
                           <button key={mode} onClick={() => setQuoteMode(mode)} className={`px-4 py-2 text-sm rounded-lg transition-colors capitalize ${quoteMode === mode ? 'bg-purple-600 text-white shadow-lg' : 'bg-slate-700/50 text-white/80 hover:bg-slate-700'}`}>{mode === 'daily' ? 'Daily Wisdom' : mode === 'themed' ? 'Themed Reflection' : 'Personalized Guidance'}</button>
                       ))}
                   </div>
-                  {/* Dynamic Controls based on Mode */}
                   {quoteMode === 'themed' && (<>
                       <select value={selectedTheme} onChange={e => setSelectedTheme(e.target.value)} className="w-full p-3 bg-slate-700/70 border border-purple-400/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-400/50 capitalize"><option value="">Select Theme</option>{availableThemes.map(t => <option key={t} value={t}>{t}</option>)}</select>
                       <button onClick={() => fetchThemedQuote(selectedTheme)} disabled={isLoadingQuote} className="md:col-span-2 w-full py-3 bg-gradient-to-r from-purple-600 to-violet-600 text-white rounded-lg hover:opacity-90 transition-opacity font-medium disabled:opacity-50">Show Themed Quote</button>
@@ -217,7 +202,6 @@ const MirrorOfErised: React.FC = () => {
               </div>
           </motion.div>
 
-          {/* Your Heart's Desires Section */}
           <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.6 }} className="bg-gradient-to-br from-slate-800/80 to-slate-900/90 rounded-xl p-8 border border-purple-400/20 backdrop-blur-sm">
             <div className="text-center mb-8"><h2 className="text-2xl font-['Cormorant_Garamond'] text-purple-300 mb-4 flex items-center justify-center space-x-2"><HeartIcon className="w-6 h-6" /><span>Generate Personal Insight</span></h2><p className="text-white/80">What does your heart truly desire? The mirror will offer its wisdom.</p></div>
             {customQuotes.length > 0 && (
