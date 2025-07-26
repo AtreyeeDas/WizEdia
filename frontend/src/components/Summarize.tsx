@@ -23,7 +23,6 @@ const Summarize: React.FC = () => {
 
     setIsChecking(true);
 
-    // Send the text to the backend for summarization
     try {
       const response = await fetch('http://localhost:5000/api/library/summarize', {
         method: 'POST',
@@ -36,7 +35,6 @@ const Summarize: React.FC = () => {
       const data = await response.json();
 
       if (data.success) {
-        // Extract summary and primary keywords
         const summaryText = data.summary.summary_text;
         const primaryKeywords = data.themes.primary_keywords.join(', ');
 
@@ -46,7 +44,7 @@ const Summarize: React.FC = () => {
           summary: summaryText,
           confidence: Math.floor(Math.random() * 20) + 80,
           timestamp: new Date(),
-          keywords: primaryKeywords.split(', '), // Store keywords as an array
+          keywords: primaryKeywords.split(', '), 
         };
 
         setResults([result, ...results]);
@@ -85,7 +83,6 @@ const Summarize: React.FC = () => {
         </button>
 
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
           <motion.div
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -100,7 +97,6 @@ const Summarize: React.FC = () => {
             </p>
           </motion.div>
 
-          {/* Summarizer */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -209,7 +205,6 @@ const Summarize: React.FC = () => {
                         <span className="font-semibold">Summary:</span> "{result.summary}"
                       </p>
 
-                      {/* ✅ Keywords output */}
                       <p className="text-parchment/80">
                         <span className="font-semibold">Keywords:</span> {result.keywords.join(', ')}
                       </p>
