@@ -121,7 +121,6 @@ const Pensieve: React.FC = () => {
       </button>
 
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -136,8 +135,6 @@ const Pensieve: React.FC = () => {
           </p>
         </motion.div>
 
-
-        {/* Pensieve Bowl */}
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -165,7 +162,6 @@ const Pensieve: React.FC = () => {
             </div>
           </motion.div>
 
-        {/* Add Memory Button */}
         <div className="text-center mb-8 z-50 relative">
           <button
             type="button"
@@ -180,7 +176,6 @@ const Pensieve: React.FC = () => {
           </button>
         </div>
 
-        {/* Modal Popup */}
         <AnimatePresence>
           {isWriting && (
             <motion.div
@@ -195,7 +190,7 @@ const Pensieve: React.FC = () => {
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.8 }}
                 className="bg-gradient-to-br from-slate-800/80 to-slate-900/90 rounded-xl p-6 border border-silver/20 backdrop-blur-sm w-full max-w-md"
-                onClick={(e) => e.stopPropagation()} // Prevent closing modal when clicking inside
+                onClick={(e) => e.stopPropagation()} 
               >
                 <h3 className="text-xl font-['Cormorant_Garamond'] text-silver mb-6 text-center">
                   Capture a New Memory
@@ -259,7 +254,6 @@ const Pensieve: React.FC = () => {
           )}
         </AnimatePresence>
 
-        {/* Memories Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {memories.map((memory, index) => (
             <motion.div
