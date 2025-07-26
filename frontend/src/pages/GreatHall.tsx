@@ -6,7 +6,6 @@ import Navbar from '../components/Navbar';
 const GreatHall: React.FC = () => {
   const navigate = useNavigate();
 
-  // Generate floating candles
   const candles = Array.from({ length: 20 }, (_, i) => ({
     id: i,
     x: Math.random() * 100,
@@ -27,10 +26,8 @@ const GreatHall: React.FC = () => {
     >
       <Navbar />
       <div className="min-h-screen p-8 relative">
-        {/* Dark overlay for better readability */}
         <div className="absolute inset-0 bg-black/30" />
         
-        {/* Floating candles */}
         {candles.map((candle) => (
           <motion.div
             key={candle.id}
@@ -51,7 +48,6 @@ const GreatHall: React.FC = () => {
               ease: "easeInOut"
             }}
           >
-            {/* Candle flame */}
             <motion.div
               className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-1 h-2 bg-yellow-300 rounded-full"
               animate={{
@@ -75,7 +71,6 @@ const GreatHall: React.FC = () => {
             Back
           </button>
 
-          {/* Header */}
           <motion.div
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -90,7 +85,6 @@ const GreatHall: React.FC = () => {
             </p>
           </motion.div>
 
-          {/* Content */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
