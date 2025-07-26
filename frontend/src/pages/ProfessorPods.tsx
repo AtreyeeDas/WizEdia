@@ -4,8 +4,6 @@ import { AcademicCapIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
-// --- Interfaces for State and API Responses ---
-
 interface Professor {
   id: 'mcgonagall' | 'snape' | 'lupin' | 'hagrid';
   name: string;
@@ -19,10 +17,9 @@ interface Professor {
   image: string;
 }
 
-// Interfaces for API results, closely matching the backend response
 interface McgResults {
   personalized_recommendations: { recommendations: string };
-  professor_insights?: { study_strategies: string[] }; // Optional since it's nested
+  professor_insights?: { study_strategies: string[] }; 
 }
 
 interface SnapeResults {
@@ -45,7 +42,6 @@ interface HagridResults {
   };
 }
 
-// --- Main Component ---
 
 const ProfessorPods: React.FC = () => {
   const [selectedProfessor, setSelectedProfessor] = useState<Professor | null>(null);
@@ -53,7 +49,6 @@ const ProfessorPods: React.FC = () => {
   const [loadingStates, setLoadingStates] = useState({ mcgonagall: false, snape: false, lupin: false, hagrid: false });
   const [errorStates, setErrorStates] = useState<Record<Professor['id'], string | null>>({ mcgonagall: null, snape: null, lupin: null, hagrid: null });
 
-  // State for each professor's form and results
   const [mcgSubject, setMcgSubject] = useState('');
   const [mcgLevel, setMcgLevel] = useState('intermediate');
   const [mcgLearningStyle, setMcgLearningStyle] = useState('mixed');
@@ -142,8 +137,6 @@ const ProfessorPods: React.FC = () => {
     setTimeout(() => setActiveProfessor(null), 3000);
   };
   
-  // --- API Handlers ---
-
   const handleMcGonagallSubmit = async () => {
     if (!mcgSubject) return;
     setApiState('mcgonagall', true, null);
@@ -228,8 +221,6 @@ const ProfessorPods: React.FC = () => {
     }
   };
 
-  // --- Render Functions ---
-  
   const ResultCard = ({ title, children }: { title: string; children: React.ReactNode }) => (
     <div className="p-4 bg-slate-700/30 rounded-lg border border-slate-600/30">
       <h5 className="text-parchment font-medium mb-2">{title}</h5>
@@ -259,7 +250,6 @@ const ProfessorPods: React.FC = () => {
             <div><label className="block text-parchment/70 text-sm mb-2">Learning Style</label><select value={mcgLearningStyle} onChange={(e) => setMcgLearningStyle(e.target.value)} className="w-full p-3 bg-slate-700/50 border border-slate-600/30 rounded-md text-parchment focus:outline-none focus:ring-2 focus:ring-slate-400/50"><option value="visual">Visual</option><option value="auditory">Auditory</option><option value="kinesthetic">Kinesthetic (Hands-on)</option><option value="mixed">Mixed</option></select></div>
             {renderError(error)}
             <button onClick={handleMcGonagallSubmit} disabled={isLoading} className="w-full py-3 bg-gradient-to-r from-green-600 to-emerald-700 text-white rounded-lg hover:opacity-90 transition-opacity shadow-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed">{isLoading ? 'Consulting...' : 'Get Recommendations'}</button>
-            {/* FIX: Use optional chaining (?.) for safe access */}
             {mcgResults?.personalized_recommendations && <div className="mt-6 space-y-4">
               <ResultCard title="Professor's Recommendation"><p className='whitespace-pre-wrap'>{mcgResults.personalized_recommendations.recommendations}</p></ResultCard>
             </div>}
@@ -276,7 +266,6 @@ const ProfessorPods: React.FC = () => {
             <div><label className="block text-parchment/70 text-sm mb-2">Timeline</label><input type="text" value={snapeTimeline} onChange={(e) => setSnapeTimeline(e.target.value)} placeholder="e.g., 6 months" className="w-full p-3 bg-slate-700/50 border border-slate-600/30 rounded-md text-parchment placeholder-parchment/50 focus:outline-none focus:ring-2 focus:ring-slate-400/50"/></div>
             {renderError(error)}
             <button onClick={handleSnapeSubmit} disabled={isLoading} className="w-full py-3 bg-gradient-to-r from-slate-700 to-gray-800 text-white rounded-lg hover:opacity-90 transition-opacity shadow-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed">{isLoading ? 'Brewing Path...' : 'Generate Career Path'}</button>
-            {/* FIX: Use optional chaining (?.) for safe access */}
             {snapeResults?.learning_path && <div className="mt-6 space-y-4">
               <ResultCard title={`Learning Path (${snapeResults.learning_path.total_duration})`}>
                 <p className="mb-2"><strong>Weekly Commitment:</strong> {snapeResults.learning_path.weekly_commitment}</p>
@@ -295,7 +284,6 @@ const ProfessorPods: React.FC = () => {
             <div><label className="block text-parchment/70 text-sm mb-2">Format</label><select value={lupinFormat} onChange={(e) => setLupinFormat(e.target.value)} className="w-full p-3 bg-slate-700/50 border border-slate-600/30 rounded-md text-parchment focus:outline-none focus:ring-2 focus:ring-slate-400/50"><option value="online">Online</option><option value="in_person">In-Person</option><option value="hybrid">Hybrid</option></select></div>
             {renderError(error)}
             <button onClick={handleLupinSubmit} disabled={isLoading} className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-lg hover:opacity-90 transition-opacity shadow-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed">{isLoading ? 'Searching...' : 'Get Tutoring Guidance'}</button>
-            {/* FIX: Use optional chaining (?.) and check for array length */}
             {lupinResults && <div className="mt-6 space-y-4">
                 {lupinResults.online_platforms?.length > 0 && <ResultCard title="Recommended Platforms">{lupinResults.online_platforms.map(p => <div key={p.name}><strong>{p.name}</strong>: {p.best_for}</div>)}</ResultCard>}
                 {lupinResults.preparation_tips?.length > 0 && <ResultCard title="Preparation Tips"><ul>{lupinResults.preparation_tips.map((tip, i) => <li key={i}>- {tip}</li>)}</ul></ResultCard>}
@@ -314,7 +302,6 @@ const ProfessorPods: React.FC = () => {
             <div><label className="block text-parchment/70 text-sm mb-2">Learning Style</label><select value={hagridLearningStyle} onChange={(e) => setHagridLearningStyle(e.target.value)} className="w-full p-3 bg-slate-700/50 border border-slate-600/30 rounded-md text-parchment focus:outline-none focus:ring-2 focus:ring-slate-400/50"><option value="visual">Visual</option><option value="auditory">Auditory</option><option value="kinesthetic">Kinesthetic</option><option value="mixed">Mixed</option></select></div>
             {renderError(error)}
             <button onClick={handleHagridSubmit} disabled={isLoading} className="w-full py-3 bg-gradient-to-r from-amber-600 to-orange-700 text-white rounded-lg hover:opacity-90 transition-opacity shadow-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed">{isLoading ? 'Thinkin\'...' : 'Get Explanation'}</button>
-            {/* FIX: Use optional chaining (?.) for safe access */}
             {hagridResults?.tutoring_response && <div className="mt-6"><ResultCard title="Here's What I Reckon"><p className="whitespace-pre-wrap">{hagridResults.tutoring_response.explanation}</p></ResultCard></div>}
           </div>
         );
@@ -324,8 +311,6 @@ const ProfessorPods: React.FC = () => {
     }
   };
   
-  // --- Main Render ---
-
   return (
     <div className="min-h-screen p-8">
       <Navbar />
