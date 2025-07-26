@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: wizedia-backend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn main:create_app() --config gunicorn_config.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: FLASK_APP
+        value: main.py
+      - key: FLASK_ENV
+        value: production
+    plan: free
+    region: oregon
+    autoDeploy: true

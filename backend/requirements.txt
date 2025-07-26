@@ -12,3 +12,5 @@ torch
 torchvision
 tiktoken==0.5.1
 sentence-transformers==2.2.2
+gunicorn==21.2.0
+gevent==23.7.0

@@ -35,10 +35,18 @@ def create_app():
     app.config['DEBUG'] = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
     
     # Enable CORS for all domains and all routes
-    CORS(app, origins=["http://localhost:5173"], allow_headers=["Content-Type", "Authorization"], methods=["GET", "POST", "OPTIONS"])
+    CORS(app, resources={
+        r"/*": {
+            "origins": ["*"]  # In production, replace "*" with your frontend URL
+        }
+    }, allow_headers=["Content-Type", "Authorization"], methods=["GET", "POST", "OPTIONS"])
     
-    # Initialize Firebase
-    initialize_firebase()
+    try:
+        # Initialize Firebase
+        initialize_firebase()
+    except Exception as e:
+        print(f"Warning: Firebase initialization failed: {str(e)}")
+        print("Continuing without Firebase...")
     
     # Register blueprints
     app.register_blueprint(pensieve_bp, url_prefix='/api/pensieve')
