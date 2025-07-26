@@ -14,7 +14,7 @@ interface Ingredient {
 interface Potion {
   id: number;
   ingredients: Ingredient[];
-  result: string; // This will hold the 'description' from the API
+  result: string; 
   color: string;
   timestamp: Date;
   brewing_difficulty: string;
@@ -46,7 +46,6 @@ const PotionMixer: React.FC = () => {
     }
   };
 
-  // Helper to determine potion color based on difficulty from API
   const getPotionColor = (difficulty: string) => {
     const difficultyClean = difficulty.toLowerCase();
     if (difficultyClean.includes('easy') || difficultyClean.includes('low')) {
@@ -58,7 +57,7 @@ const PotionMixer: React.FC = () => {
     if (difficultyClean.includes('hard') || difficultyClean.includes('high') || difficultyClean.includes('difficult')) {
         return 'from-red-600 to-red-800';
     }
-    return 'from-purple-400 to-violet-600'; // Default
+    return 'from-purple-400 to-violet-600'; 
   };
 
 
@@ -117,7 +116,7 @@ const PotionMixer: React.FC = () => {
                 timestamp: new Date(),
             };
             setPotions([newPotion, ...potions]);
-            setCauldronIngredients([]); // Clear the cauldron
+            setCauldronIngredients([]); 
         } else {
             throw new Error(data.error || "The potion's ingredients failed to combine properly.");
         }
