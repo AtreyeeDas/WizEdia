@@ -13,19 +13,18 @@ interface Memory {
   mood: Mood;
   date: Date;
   emotion: string;
-  magicalInsight: string; // New field from API
+  magicalInsight: string; 
 }
 
 const Pensieve: React.FC = () => {
   const [memories, setMemories] = useState<Memory[]>([]);
   const [isWriting, setIsWriting] = useState(false);
-  const [isSaving, setIsSaving] = useState(false); // For loading state
-  const [error, setError] = useState<string | null>(null); // For error handling
+  const [isSaving, setIsSaving] = useState(false); 
+  const [error, setError] = useState<string | null>(null); 
   const [newMemory, setNewMemory] = useState({ title: '', content: '' });
 
   const navigate = useNavigate();
 
-  // Maps API emotion to a valid Mood type for styling
   const mapEmotionToMood = (emotion: string): Mood => {
     const lowerEmotion = emotion.toLowerCase();
     switch (lowerEmotion) {
@@ -76,8 +75,8 @@ const Pensieve: React.FC = () => {
         };
 
         setMemories([memory, ...memories]);
-        setNewMemory({ title: '', content: '' }); // Reset form
-        setIsWriting(false); // Close modal
+        setNewMemory({ title: '', content: '' }); 
+        setIsWriting(false); 
       } else {
         throw new Error(data.error || "An unknown magical interference occurred.");
       }
