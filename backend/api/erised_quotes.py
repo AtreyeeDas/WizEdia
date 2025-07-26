@@ -15,7 +15,6 @@ from flask_limiter.util import get_remote_address
 
 erised_bp = Blueprint('erised', __name__)
 
-# Create a limiter instance (without attaching to app yet)
 limiter = Limiter(key_func=get_remote_address)
 
 @erised_bp.route('/quote', methods=['GET'])
@@ -24,7 +23,6 @@ limiter = Limiter(key_func=get_remote_address)
 def get_motivational_quote():
     """Get a personalized motivational quote"""
     try:
-        # Get optional parameters
         from markupsafe import escape
 
         mood = escape(request.args.get('mood', 'neutral'))
@@ -32,16 +30,13 @@ def get_motivational_quote():
         house = escape(request.args.get('house', 'ravenclaw'))
 
         
-        # Try to generate personalized quote using LLM
         if mood != 'neutral' or context != 'general':
             personalized_quote = generate_personalized_quote(mood, context, house)
             if personalized_quote:
                 return safe_json_response(personalized_quote)
         
-        # Fallback to curated quotes
         quote_data = get_curated_quote(mood, context, house)
         
-        # Add user context if authenticated
         if hasattr(request, 'user') and request.user:
             quote_data['user_id'] = request.user.get('uid')
             quote_data['personalized'] = True
@@ -64,12 +59,10 @@ def get_motivational_quote():
 def get_daily_quote():
     """Get quote of the day"""
     try:
-        # Generate daily quote based on date
         import datetime
         today = datetime.date.today()
         day_of_year = today.timetuple().tm_yday
         
-        # Use day of year to select consistent daily quote
         daily_quotes = get_daily_quote_collection()
         selected_quote = daily_quotes[day_of_year % len(daily_quotes)]
         
@@ -130,10 +123,8 @@ def create_custom_quote():
         challenge = data.get('challenge', '')
         preferred_style = data.get('style', 'inspiring')
         
-        # Create personalized prompt
         prompt = create_custom_quote_prompt(situation, goal, challenge, preferred_style)
         
-        # Generate quote using LLM
         llm_response = gemini_chat.chat(
             prompt=prompt,
             context="You are the Mirror of Erised, showing people what they need to hear to move forward.",
@@ -141,7 +132,6 @@ def create_custom_quote():
         )
         
         if llm_response['success']:
-            # Parse the generated quote
             quote_text = llm_response['response']
             
             response_data = {
@@ -156,11 +146,9 @@ def create_custom_quote():
                 'mirror_insight': generate_mirror_insight(situation, goal)
             }
         else:
-            # Fallback to template-based custom quote
             response_data = generate_template_quote(situation, goal, challenge, preferred_style)
             response_data['llm_fallback'] = True
-        
-        # Add user tracking
+
         if hasattr(request, 'user') and request.user:
             response_data['user_id'] = request.user.get('uid')
         
@@ -185,7 +173,6 @@ def quote_reflection():
         quote = data['quote']
         personal_context = data.get('context', '')
         
-        # Generate reflection questions
         reflection_prompt = f"""Based on this quote: "{quote}"
         
         Personal context: {personal_context}
@@ -308,11 +295,9 @@ def get_curated_quote(mood: str, context: str, house: str) -> dict:
         ]
     }
     
-    # Get quotes for mood or default to general motivational quotes
     relevant_quotes = quotes_by_mood.get(mood, quotes_by_mood['unmotivated'])
     selected_quote = random.choice(relevant_quotes)
     
-    # Add house-specific wisdom
     house_wisdom = get_house_wisdom_for_quote(selected_quote['theme'], house)
     
     return {
