@@ -69,7 +69,6 @@ const Source: React.FC = () => {
 
     setIsChecking(true);
 
-    // Prepare the request payload
     const payload = {
       sources: inputs.map(input => ({
         title: input.title,
@@ -79,7 +78,6 @@ const Source: React.FC = () => {
     };
 
     try {
-      // Send POST request to backend
       const response = await fetch('http://localhost:5000/api/library/compare-sources', {
         method: 'POST',
         headers: {
@@ -89,9 +87,8 @@ const Source: React.FC = () => {
       });
 
       const data = await response.json();
-      setResults(data);  // Update the results state with the response
+      setResults(data); 
 
-      // Reset input fields
       setInputs([{ title: '', url: '', text: '' }, { title: '', url: '', text: '' }]);
     } catch (error) {
       console.error('Error fetching comparison results:', error);
