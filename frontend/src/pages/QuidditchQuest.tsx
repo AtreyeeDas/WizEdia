@@ -151,7 +151,6 @@ const QuidditchQuest: React.FC = () => {
         Back
       </button>
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -165,7 +164,6 @@ const QuidditchQuest: React.FC = () => {
             Form your team, choose your quest, and build something magical
           </p>
 
-          {/* Flying Broomstick Animation */}
           <motion.div
             initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -183,7 +181,6 @@ const QuidditchQuest: React.FC = () => {
               🧹
             </motion.div>
             
-            {/* Trailing sparkles */}
             {[...Array(5)].map((_, i) => (
               <motion.div
                 key={i}
@@ -203,7 +200,6 @@ const QuidditchQuest: React.FC = () => {
           </motion.div>
         </motion.div>
 
-        {/* Tab Navigation */}
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -237,7 +233,6 @@ const QuidditchQuest: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Content based on selected tab */}
         <motion.div
           key={selectedTab}
           initial={{ y: 20, opacity: 0 }}
@@ -246,7 +241,6 @@ const QuidditchQuest: React.FC = () => {
         >
           {selectedTab === 'projects' && (
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* Projects List */}
               <div className="lg:col-span-2">
                 <div className="space-y-6">
                   {projects.map((project, index) => (
@@ -305,7 +299,6 @@ const QuidditchQuest: React.FC = () => {
                 </div>
               </div>
 
-              {/* Selected Project Details */}
               <div>
                 <div className="bg-gradient-to-br from-slate-800/60 to-slate-900/80 rounded-xl p-6 border border-orange-400/20 backdrop-blur-sm sticky top-8">
                   <h2 className="text-xl font-['Cormorant_Garamond'] text-parchment mb-6 flex items-center space-x-2">
