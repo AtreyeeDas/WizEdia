@@ -138,7 +138,6 @@ const PotionMixer: React.FC = () => {
         Back
       </button>
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -154,7 +153,6 @@ const PotionMixer: React.FC = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Ingredient Shelves & Results */}
           <div className="lg:col-span-2 space-y-8">
             <motion.div
               initial={{ x: -50, opacity: 0 }}
@@ -162,7 +160,6 @@ const PotionMixer: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="bg-gradient-to-br from-slate-800/60 to-slate-900/80 rounded-xl p-6 border border-green-400/20 backdrop-blur-sm"
             >
-              {/* Shelves Header & Add Button */}
               <div className="flex items-center justify-between mb-6">
                  <h2 className="text-xl font-['Cormorant_Garamond'] text-parchment">
                      Ingredient Shelves
@@ -178,7 +175,6 @@ const PotionMixer: React.FC = () => {
                  </motion.button>
               </div>
 
-              {/* Add Ingredient Form */}
               {showAddIngredient && (
                 <motion.div
                   initial={{ y: -20, opacity: 0 }}
@@ -210,7 +206,6 @@ const PotionMixer: React.FC = () => {
                 </motion.div>
               )}
 
-              {/* Available Ingredients Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                  {availableIngredients.map((ingredient, index) => (
                      <motion.div
@@ -234,7 +229,6 @@ const PotionMixer: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Brewing Results */}
             {potions.length > 0 && (
               <motion.div
                 initial={{ y: 50, opacity: 0 }}
@@ -254,7 +248,6 @@ const PotionMixer: React.FC = () => {
                          >
                             <div className="text-sm opacity-80 mb-3">{potion.timestamp.toLocaleString()}</div>
                             <div className="font-semibold mb-3">Potion Analysis:</div>
-                            {/* Render the detailed description, preserving whitespace */}
                             <div className="text-sm mb-4 whitespace-pre-wrap font-light opacity-90">{potion.result}</div>
                             <div className="text-xs opacity-80 border-t border-white/20 pt-2">
                                 <p><strong>Ingredients:</strong> {potion.ingredients.map(i => i.name).join(', ')}</p>
@@ -267,7 +260,6 @@ const PotionMixer: React.FC = () => {
             )}
           </div>
 
-          {/* Cauldron */}
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -279,9 +271,7 @@ const PotionMixer: React.FC = () => {
                  <span>Brewing Cauldron</span>
              </h2>
 
-             {/* Cauldron Visual & Ingredients */}
              <div className="relative mb-6">
-                {/* Visuals here - code unchanged */}
                 <motion.div
                   className="w-48 h-48 mx-auto bg-gradient-to-br from-slate-700 to-slate-900 rounded-full border-4 border-slate-600 shadow-2xl overflow-hidden"
                   animate={isBrewingPotion ? { scale: [1, 1.05, 1] } : {}}
@@ -295,11 +285,9 @@ const PotionMixer: React.FC = () => {
                     )}
                     {cauldronIngredients.length === 0 && (<div className="absolute inset-0 flex items-center justify-center text-parchment/50 text-sm text-center">Drop ingredients here</div>)}
                 </motion.div>
-                {/* Sparks */}
                 {isBrewingPotion && ( <> {[...Array(8)].map((_, i) => ( <motion.div key={i} className="absolute w-1 h-1 bg-green-400 rounded-full" animate={{ scale: [0, 1, 0], y: [0, -40, -80], x: [0, Math.random() * 40 - 20, Math.random() * 80 - 40], opacity: [0, 1, 0]}} transition={{ duration: 2, repeat: Infinity, delay: i * 0.2}} style={{ left: `${45 + Math.random() * 10}%`, top: '20%'}}/> ))} </>)}
              </div>
 
-             {/* Ingredients in Cauldron */}
              {cauldronIngredients.length > 0 && (
                 <div className="space-y-2 mb-6 min-h-[50px]">
                   <h3 className="text-sm text-parchment/70">In the cauldron:</h3>
@@ -311,7 +299,6 @@ const PotionMixer: React.FC = () => {
                 </div>
              )}
 
-             {/* Brew Button */}
              <motion.button
                 whileHover={{ scale: cauldronIngredients.length > 0 ? 1.05 : 1 }}
                 whileTap={{ scale: cauldronIngredients.length > 0 ? 0.95 : 1 }}
@@ -325,7 +312,6 @@ const PotionMixer: React.FC = () => {
                 </span>
              </motion.button>
 
-             {/* Error Message */}
              {error && (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-4 bg-red-900/50 border border-red-500 text-red-300 px-4 py-3 rounded-lg flex items-center space-x-3 text-sm">
                     <XCircleIcon className="w-5 h-5" />
