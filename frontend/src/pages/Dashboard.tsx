@@ -121,13 +121,12 @@ const Dashboard: React.FC<DashboardProps> = ({ userHouse, userPatronus, userData
     },
   ];
 
-  // Generate floating candles
   const candles = Array.from({ length: 25 }, (_, i) => ({
     id: i,
     x: Math.random() * 100,
-    y: 100 + Math.random() * 20, // Start from bottom
+    y: 100 + Math.random() * 20,
     delay: Math.random() * 3,
-    duration: 8 + Math.random() * 4 // Slower movement
+    duration: 8 + Math.random() * 4
   }));
 
   const getHouseGreeting = () => {
@@ -171,11 +170,9 @@ const Dashboard: React.FC<DashboardProps> = ({ userHouse, userPatronus, userData
       }}
     >
       <div className="min-h-screen p-8 relative">
-        {/* Dark overlay for better readability */}
         <div className="absolute inset-0 bg-black/30" />
         
-        {/* Floating candles */}
-        {candles.map((candle) => (
+          {candles.map((candle) => (
           <motion.div
             key={candle.id}
             className="absolute w-3 h-8 bg-white rounded-full shadow-lg"
@@ -195,7 +192,6 @@ const Dashboard: React.FC<DashboardProps> = ({ userHouse, userPatronus, userData
               ease: "easeInOut"
             }}
           >
-            {/* Candle flame */}
             <motion.div
               className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-2 h-3 bg-gradient-to-b from-orange-400 to-orange-600 rounded-full"
               animate={{
@@ -208,7 +204,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userHouse, userPatronus, userData
                 ease: "easeInOut"
               }}
             >
-              {/* Inner flame glow */}
+             
               <div className="absolute inset-0 bg-orange-300 rounded-full opacity-60" />
             </motion.div>
           </motion.div>
@@ -222,7 +218,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userHouse, userPatronus, userData
             Logout
           </button>
           
-          {/* Header */}
+          
           <motion.div
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -237,7 +233,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userHouse, userPatronus, userData
             </h2>
           </motion.div>
 
-          {/* Features Grid */}
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {features.map((feature, index) => {
               const Icon = feature.icon;
@@ -269,7 +265,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userHouse, userPatronus, userData
                       </p>
                     </div>
                     
-                    {/* Hover effect overlay */}
+                    
                     <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-gold/0 via-gold/5 to-gold/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </Link>
                 </motion.div>
@@ -277,7 +273,6 @@ const Dashboard: React.FC<DashboardProps> = ({ userHouse, userPatronus, userData
             })}
           </div>
 
-          {/* Quick Stats */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
