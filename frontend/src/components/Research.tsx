@@ -4,7 +4,6 @@ import { ExclamationTriangleIcon, CheckCircleIcon, MagnifyingGlassIcon, XCircleI
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
-// Updated interface to match the backend API response
 interface ResearchResult {
   id: number;
   topic: string;
@@ -20,8 +19,8 @@ interface ResearchResult {
 
 const Research: React.FC = () => {
   const [topic, setTopic] = useState('');
-  const [level, setLevel] = useState('undergraduate'); // Default to undergraduate
-  const [type, setType] = useState('general'); // Default to general
+  const [level, setLevel] = useState('undergraduate');
+  const [type, setType] = useState('general');
   const [isChecking, setIsChecking] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [results, setResults] = useState<ResearchResult[]>([]);
@@ -63,7 +62,6 @@ const Research: React.FC = () => {
         };
 
         setResults([newResult, ...results]);
-        // Reset form
         setTopic('');
         setType('general');
         setLevel('undergraduate');
@@ -92,7 +90,6 @@ const Research: React.FC = () => {
         </button>
 
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
           <motion.div
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -107,7 +104,6 @@ const Research: React.FC = () => {
             </p>
           </motion.div>
 
-          {/* Research Assistant Input */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -175,7 +171,6 @@ const Research: React.FC = () => {
                 </span>
               </motion.button>
               
-              {/* --- Loading Spinner --- */}
               {isChecking && (
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -192,7 +187,6 @@ const Research: React.FC = () => {
                   </p>
                 </motion.div>
               )}
-              {/* --- Error Message --- */}
               {error && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -206,7 +200,6 @@ const Research: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* --- Results Display --- */}
           {results.length > 0 && (
             <motion.div
               initial={{ y: 50, opacity: 0 }}
@@ -236,7 +229,6 @@ const Research: React.FC = () => {
                         Research Plan for "{result.topic}" (Level: {result.level}, Type: {result.type})
                       </h3>
 
-                      {/* Render each section from the API response */}
                       <ResultSection title="Suggested Research Questions">
                         <div className="text-parchment/70 whitespace-pre-wrap">{result.suggested_research_questions}</div>
                       </ResultSection>
@@ -276,7 +268,6 @@ const Research: React.FC = () => {
   );
 };
 
-// Helper component for consistent section styling
 const ResultSection: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
   <div>
     <p className="text-parchment/80 mb-2 font-semibold">{title}:</p>
