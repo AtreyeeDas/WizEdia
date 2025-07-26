@@ -60,7 +60,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-800 text-parchment relative overflow-hidden">
-      {/* Magical background effects */}
       <div className="fixed inset-0 opacity-20">
         <div className="absolute top-10 left-10 w-2 h-2 bg-gold rounded-full animate-pulse"></div>
         <div className="absolute top-32 right-20 w-1 h-1 bg-silver rounded-full animate-ping"></div>
@@ -68,7 +67,6 @@ function App() {
         <div className="absolute top-1/2 right-1/3 w-1 h-1 bg-silver rounded-full animate-ping delay-500"></div>
       </div>
 
-      {/* Wand trail cursor effect */}
       <motion.div
         className="fixed w-6 h-6 pointer-events-none z-50"
         animate={{
