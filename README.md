@@ -136,6 +136,10 @@ Framer Motion – Smooth animations for transitions and interactive elements
 
 https://drive.google.com/drive/folders/1Hgl0uq1vTWi5suqeqlv9903o4IUblc59
 
+## 🔗 Deployment Link 
+
+https://wizedia.vercel.app
+
 ## 👨‍💻 Contributors
 
 **Team ParselCoders**
