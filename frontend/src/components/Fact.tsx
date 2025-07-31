@@ -28,7 +28,7 @@ d
     };
 
     try {
-      const response = await fetch('http://localhost:5000/api/library/fact-check', {
+      const response = await fetch('https://wizedia-backend-2.onrender.com/api/library/fact-check', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
