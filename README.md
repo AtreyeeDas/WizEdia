@@ -145,10 +145,10 @@ https://wizedia.vercel.app
 **Team ParselCoders**
 Institute of Engineering & Management, Kolkata
 
-* Raunak Sen (Team Lead | Frontend Developer) : https:/github.com/rksinthecity
-* Atreyee Das (Backend Developer) : https:/github.com/AtreyeeDas
-* Ishan Dutta (Frontend Developer) : https:/github.com/id1509
-* Tanisha Debnath (Backend Developer) : https:/github.com/TanishaDebnath
+* Raunak Sen (Team Lead | Frontend Developer) : https://github.com/rksinthecity
+* Atreyee Das (Backend Developer) : https://github.com/AtreyeeDas
+* Ishan Dutta (Frontend Developer) : https://github.com/id1509
+* Tanisha Debnath (Backend Developer) : https://github.com/TanishaDebnath
 
 ---
 
