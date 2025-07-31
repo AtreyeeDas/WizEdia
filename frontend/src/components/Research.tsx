@@ -33,7 +33,7 @@ const Research: React.FC = () => {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:5000/api/library/research-assistant', {
+      const response = await fetch('https://wizedia-backend-2.onrender.com/api/library/research-assistant', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
