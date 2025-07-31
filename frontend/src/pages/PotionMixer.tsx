@@ -94,7 +94,7 @@ const PotionMixer: React.FC = () => {
     const conceptNames = cauldronIngredients.map(ing => ing.name);
 
     try {
-        const response = await fetch('http://localhost:5000/api/potion/analyze-batch', {
+        const response = await fetch('https://wizedia-backend-2.onrender.com/api/potion/analyze-batch', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ concepts: conceptNames }),
