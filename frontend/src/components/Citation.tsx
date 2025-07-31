@@ -29,7 +29,7 @@ const Citation: React.FC = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/api/library/plagiarism-checker', {
+      const response = await fetch('https://wizedia-backend-2.onrender.com/api/library/plagiarism-checker', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
