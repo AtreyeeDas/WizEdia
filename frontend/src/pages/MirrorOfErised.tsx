@@ -59,7 +59,7 @@ const MirrorOfErised: React.FC = () => {
   };
 
   const fetchDailyQuote = async () => {
-    const data = await fetchQuote('https://wizedia-backend-2.onrender.com');
+    const data = await fetchQuote('https://wizedia-backend-2.onrender.com/api/erised/daily');
     if (data) {
       setQuoteState({
         quote: data.quote,
