@@ -24,7 +24,7 @@ const Summarize: React.FC = () => {
     setIsChecking(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/library/summarize', {
+      const response = await fetch('https://wizedia-backend-2.onrender.com/api/library/summarize', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
