@@ -1,4 +1,4 @@
-<img width="32" height="32" alt="image" src="https://github.com/user-attachments/assets/45cf381e-5221-4fe9-9986-8aebbf12b67d" /># 🧙‍♂️ WizEdia: Where Learning Meets Magic
+<img width="32" height="32" alt="image" src="https://github.com/user-attachments/assets/45cf381e-5221-4fe9-9986-8aebbf12b67d" /> 🧙‍♂️ WizEdia: Where Learning Meets Magic
 
 **WizEdia** is a gamified, AI-powered, Hogwarts-themed educational platform designed to transform academic stress into an engaging magical adventure. Created by **Team ParselCoders** from IEM Kolkata, it offers a blend of emotional intelligence, intelligent tutoring, and immersive storytelling to make learning fun, focused, and fulfilling.
 
